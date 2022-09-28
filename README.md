@@ -1,3 +1,3 @@
 # RecipeGo
-Amanda Dawley
+
 
