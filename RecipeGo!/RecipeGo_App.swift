@@ -6,12 +6,16 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct RecipeGo_App: App {
+    init() {
+        FirebaseApp.configure()
+    }
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            PostsList()
         }
     }
 }
