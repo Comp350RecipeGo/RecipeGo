@@ -3,43 +3,58 @@
 //  RecipeGo!
 //
 //  Created by Matilda on 10/3/22.
-//
+
+/*
+ Contains user post defintion
+ Search capability for feed
+ and 2 test posts
+ */
 
 import Foundation
 
-
-struct Post: Identifiable {
+// user post definition
+struct Post: Identifiable, Codable {
     var title: String
     var content: String
     var authorName: String
+    //var author: User
     var timestamp = Date()
-    var id = UUID() // unique identifier for each post
+    var id = UUID() // every post will have a unique UUID
+    var imageURL: URL?
+
     
     /*
-     This method checks the title, content, and author name to see whether they contain search string.
+     Search function let's you search the feed for author name, content or, used in PostsList
+     post title
      */
     func contains(_ string: String) -> Bool {
         let properties = [title, content, authorName].map { $0.lowercased() }
         let query = string.lowercased() // not case sensetive
-     
         let matches = properties.filter { $0.contains(query) }
         return !matches.isEmpty
     }
     
 }
 
+//extension Post: Codable {
+//    enum CodingKeys: CodingKey {
+//        case title, content, author, imageURL, timestamp, id
+//    }
+//}
 
 
-extension Post { // test post view 
+// Hardcoded test post for feed
+extension Post {
     static let testPost = Post(
-        title: "Test Post Title",
-        content: "test description box...",
+        title: "My Recipe",
+        content: "description box...",
         authorName: "John Doe")
 }
 
-extension Post { // test post view
+// Hardcoded test post 2 for feed
+extension Post {
     static let testPost2 = Post(
         title: "Carbonara",
-        content: "Recipe description: egg, bacon...",
+        content: "Delicious!",
         authorName: "Jane Doe")
 }

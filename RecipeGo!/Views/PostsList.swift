@@ -5,24 +5,43 @@
 //  Created by Matilda on 10/3/22.
 //
 
-import SwiftUI
+/*
+ showNewPostTemplate sets to true or false to pull up new post template
+ // dismiss newPostTemplate when no longer needed in view
+ */
 
+import SwiftUI
 
 // Post list will display list of post 
 struct PostsList: View {
-    private var posts = [Post.testPost, Post.testPost2]
     
-    @State private var searchText = "" // initialize search 
+    @StateObject var viewModel = PostsViewModel()
+    
+    @State private var showNewPostTemplate = false
+    @State private var searchText = ""
+    
+    @Environment(\.dismiss) private var dismiss
+    
     
     var body: some View {
         NavigationView {
-            List(posts) { post in
+            List(viewModel.posts) { post in
                 if searchText.isEmpty || post.contains(searchText) {
                     PostRow(post: post)
                 }
             }
             .searchable(text: $searchText)
-            .navigationTitle("Posts")
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .toolbar {
+                Button {
+                    showNewPostTemplate = true
+                } label: {
+                    Label("New Post", systemImage: "square.and.pencil")
+                }
+            }
+        }
+        .sheet(isPresented: $showNewPostTemplate) { // LOADS NEW POST TEMPLATE as a sheet
+            NewPostTemplate(createAction: viewModel.makeCreateAction()) // call createAction
         }
     }
 }
