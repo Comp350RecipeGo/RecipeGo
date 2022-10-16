@@ -14,8 +14,7 @@ struct ContentView: View {
     var body: some View {
         TabView(selection:$selection){
             PostsList()
-            //Text("Feed")
-                .font(.title) // FeedIcon text
+                .font(.title) 
                 .tabItem {
                     VStack{
                         Image(systemName: "globe")

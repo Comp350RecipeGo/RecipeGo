@@ -41,8 +41,6 @@ struct PostRow: View {
         }
         
     }
-   
-    
     
 }
 
@@ -52,6 +50,7 @@ struct PostRow_Previews: PreviewProvider {
         List {
             // passing our testPosts
             PostRow(post: Post.testPost)
+            PostRow(post: Post.testPost2)
         }
     }
 }
