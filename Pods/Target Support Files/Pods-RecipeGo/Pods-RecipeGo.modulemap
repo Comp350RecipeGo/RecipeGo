@@ -1,0 +1,6 @@
+framework module Pods_RecipeGo {
+  umbrella header "Pods-RecipeGo-umbrella.h"
+
+  export *
+  module * { export * }
+}
