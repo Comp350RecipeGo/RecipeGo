@@ -47,7 +47,7 @@ struct Post: Identifiable, Codable {
 extension Post {
     static let testPost = Post(
         title: "My Recipe",
-        content: "description box...",
+        content: "This recipe is quick and easy to make ...",
         authorName: "John Doe")
 }
 
@@ -55,6 +55,6 @@ extension Post {
 extension Post {
     static let testPost2 = Post(
         title: "Carbonara",
-        content: "Delicious!",
+        content: "So delicious!",
         authorName: "Jane Doe")
 }

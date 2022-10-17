@@ -9,8 +9,6 @@ import SwiftUI
 // VIEW STRUCT
 struct NewPostTemplate: View {
     
-    //@StateObject var viewModel: TemplateViewModel<Post>
-    
     // function that accepts a new post object, uploads to firebase and updates the other views
     typealias CreateAction = (Post) async throws -> Void
     let createAction: CreateAction
@@ -22,6 +20,8 @@ struct NewPostTemplate: View {
     
     // dismiss newPostTemplate when no longer needed in view
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     
     var body: some View {
         NavigationView {
@@ -31,7 +31,7 @@ struct NewPostTemplate: View {
                     TextField("Author Name", text: $newPost.authorName)
                 }
                 //ImageSection(imageURL: $viewModel.imageURL)
-                Section("Content") {  // description section
+                Section("Content") {
                     TextEditor(text: $newPost.content)
                         .multilineTextAlignment(.leading)
                 }
@@ -70,6 +70,11 @@ struct NewPostTemplate: View {
                 state = .error
             }
         }
+    }
+    
+    private func dismissTemplate()
+    {
+        dismiss()
     }
 }
 
